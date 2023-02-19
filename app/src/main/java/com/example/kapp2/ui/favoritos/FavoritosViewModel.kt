@@ -1,13 +1,13 @@
-package com.example.kapp2.ui.dashboard
+package com.example.kapp2.ui.favoritos
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class FavoritosViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is favoritos Fragment"
     }
     val text: LiveData<String> = _text
 }
