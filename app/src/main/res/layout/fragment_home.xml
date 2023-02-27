@@ -21,27 +21,26 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
+        android:layout_width="323dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="392dp"
         android:hint="@string/username"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_width="322dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="48dp"
         android:hint="@string/password"
         android:imeActionLabel="@string/enter"
         android:imeOptions="actionDone"
@@ -49,7 +48,7 @@
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -64,10 +63,10 @@
         android:text="@string/enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.704" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -85,9 +84,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="173dp"
-        android:layout_height="141dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="212dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="32dp"
         android:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
