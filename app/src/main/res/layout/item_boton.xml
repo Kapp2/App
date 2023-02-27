@@ -7,10 +7,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="149dp">
+        android:layout_height="149dp"
+        android:background="#BDBCBC">
 
         <ToggleButton
-            android:id="@+id/toggleButtonLeft"
+            android:id="@+id/tbtLeft"
             android:layout_width="138dp"
             android:layout_height="103dp"
             android:layout_marginStart="32dp"
@@ -25,17 +26,18 @@
             app:layout_constraintHorizontal_bias="0.019"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.111" />
+            app:layout_constraintVertical_bias="0.111"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <ToggleButton
-            android:id="@+id/toggleButtonRight"
+            android:id="@+id/tbtRight"
             android:layout_width="138dp"
             android:layout_height="103dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
-            android:background="@drawable/ic_tg_green_bg"
+            android:background="@drawable/ic_tg_purple_bg"
             android:textOff=""
             android:textOn=""
             app:layout_constraintBottom_toBottomOf="parent"

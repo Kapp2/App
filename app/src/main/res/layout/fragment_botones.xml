@@ -6,75 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ui.botones.BotonesFragment">
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="138dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/ic_tg_green_bg"
-        android:textOff=""
-        android:textOn=""
+    <TextView
+        android:id="@+id/tvBotones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="Botones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton4" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.011"/>
 
-    <ToggleButton
-        android:id="@+id/toggleButton2"
-        android:layout_width="138dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/ic_tg_red_bg"
-        android:textOff=""
-        android:textOn=""
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBotones"
+        android:layout_width="399dp"
+        android:layout_height="667dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton3"
-        android:layout_width="138dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/ic_tg_skyblue_bg"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintStart_toEndOf="@+id/toggleButton"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton5" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton4"
-        android:layout_width="138dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/ic_tg_yellow_bg"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton2" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton5"
-        android:layout_width="138dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/ic_tg_purple_bg"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintStart_toEndOf="@+id/toggleButton4"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton6" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton6"
-        android:layout_width="138dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/ic_tg_green_bg"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintStart_toEndOf="@+id/toggleButton2"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:listitem="@layout/item_boton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
