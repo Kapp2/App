@@ -2,8 +2,8 @@ package com.example.kapp2.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.kapp2.db.realtions.BotonesFavoritosCrossRef
-import com.example.kapp2.db.realtions.PerfilConBotones
+import com.example.kapp2.db.relations.BotonesFavoritosCrossRef
+import com.example.kapp2.db.relations.PerfilConBotones
 import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 

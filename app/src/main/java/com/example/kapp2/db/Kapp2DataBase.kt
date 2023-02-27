@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.kapp2.R
-import com.example.kapp2.db.realtions.BotonesFavoritosCrossRef
+import com.example.kapp2.db.relations.BotonesFavoritosCrossRef
 import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 import kotlinx.coroutines.GlobalScope

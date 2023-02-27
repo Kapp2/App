@@ -37,21 +37,7 @@ class BotonesFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val botonesViewModel =
-            ViewModelProvider(this)[BotonesViewModel::class.java]
 
-        binding.toggleButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked){
-                mp  = MediaPlayer.create(activity, R.raw.cuenta_actitud)
-                mp.start()
-            }
-            else
-                mp.pause()
-        }
-        binding.toggleButton.setOnClickListener {
-            while (mp.isPlaying){ }
-            (it as ToggleButton).isChecked = false
-        }
 
     }
     /*

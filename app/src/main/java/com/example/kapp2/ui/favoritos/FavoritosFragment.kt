@@ -28,10 +28,6 @@ class FavoritosFragment : Fragment() {
         _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        favoritosViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

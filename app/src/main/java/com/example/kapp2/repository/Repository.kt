@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.kapp2.db.Kapp2Dao
 import com.example.kapp2.db.Kapp2DataBase
-import com.example.kapp2.db.realtions.BotonesFavoritosCrossRef
+import com.example.kapp2.db.relations.BotonesFavoritosCrossRef
 import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 

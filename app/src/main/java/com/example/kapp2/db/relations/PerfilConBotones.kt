@@ -1,4 +1,4 @@
-package com.example.kapp2.db.realtions
+package com.example.kapp2.db.relations
 
 import androidx.room.Embedded
 import androidx.room.Junction

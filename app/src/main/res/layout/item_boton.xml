@@ -22,18 +22,6 @@
             android:textOn=""
             tools:ignore="DuplicateSpeakableTextCheck" />
 
-        <ToggleButton
-            android:id="@+id/tbtRight"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/ic_tg_yellow_bg"
-            android:textOff=""
-            android:textOn=""
-            android:layout_toEndOf="@id/tbtLeft"
-            tools:ignore="DuplicateSpeakableTextCheck" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
