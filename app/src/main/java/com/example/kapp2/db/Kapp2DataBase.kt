@@ -9,13 +9,11 @@ import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 @Database(entities = [Boton::class], [Perfil::class], version = 1, exportSchema = false)
 abstract class Kapp2DataBase : RoomDatabase(){
 
-    abstract fun perfilDAO(): PerfilDAO
-    abstract fun botonDao(): BotonDAO
+    abstract fun kapp2Dao(): Kapp2Dao
 
         companion object {
             // Singleton prevents multiple instances of database opening at the same time.
@@ -48,40 +46,23 @@ abstract class Kapp2DataBase : RoomDatabase(){
                 super.onCreate(db)
                 INSTANCE?.let { database ->
                     GlobalScope.launch {
-                        cargarDatabase(database.botonDao(),database.perfilDAO())
+                        cargarDatabase(database.kapp2Dao(),database.kapp2Dao())
                     }
                 }
             }
             //Iniciamos la base de datos con Tareas de ejemplo
-            suspend fun cargarDatabase(botonDAO: BotonDAO, perfilDAO: PerfilDAO) {
-                val tecnicos = listOf(
-                    "Pepe Gotero",
-                    "Sacarino Pómez",
-                    "Mortadelo Fernández",
-                    "Filemón López",
-                    "Zipi Climent",
-                    "Zape Gómez"
-                )
+            suspend fun cargarDatabase(kapp2Dao: Kapp2Dao) {
                 lateinit var perfil: Perfil
-                 {
-
                     perfil = Perfil(
                         "Master",
                         "123456",
 
                     )
-                    perfilDAO.addPerfil(perfil)
-                }
-                lateinit var boton: Boton
-                (1..10).forEach {
-                    // Thread.sleep(2000)
-                    boton = Boton(
-                        "Master",
-                        "123456",
+                    kapp2Dao.addPerfil(perfil)
 
+                var boton: Boton = Boton(
                         )
-                    botonDAO.addBoton(boton)
-                }
+                    kapp2Dao.addBoton(boton)
             }
         }
 
