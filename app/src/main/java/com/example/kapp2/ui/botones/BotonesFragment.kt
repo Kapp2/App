@@ -5,24 +5,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kapp2.R
-import com.example.kapp2.adapter.Kapp2Adapter
+import com.example.kapp2.adapter.BotonesAdapter
 import com.example.kapp2.databinding.FragmentBotonesBinding
 import com.example.kapp2.model.Boton
+import com.example.kapp2.viewModel.AppViewModel
 
 class BotonesFragment : Fragment() {
 
     private var _binding: FragmentBotonesBinding? = null
-    private lateinit var mp: MediaPlayer
+    private var mp: MediaPlayer?=null
+    private val viewModel: AppViewModel //by activityViewModels()
+        get() {
+            TODO()
+        }
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var kapp2Adapter: Kapp2Adapter
+    private lateinit var botonesAdapter: BotonesAdapter
 
 
     override fun onCreateView(
@@ -46,6 +50,10 @@ class BotonesFragment : Fragment() {
         iniciaRecyclerView()
         iniciaCRUD()
 
+        viewModel.botonLiveData.observe(viewLifecycleOwner, Observer<List<Boton>> { lista ->
+            //actualizaLista(lista)
+            botonesAdapter.setLista(lista)
+        })
     }
     /*
     fun CuantaActitud(view: View?) {
@@ -55,26 +63,24 @@ class BotonesFragment : Fragment() {
 
      */
     private fun iniciaCRUD(){
-        kapp2Adapter.onBotonClickListener = object :
-            Kapp2Adapter.OnBotonClickListener {
-
+        botonesAdapter.onBotonClickListener = object :
+            BotonesAdapter.OnBotonClickListener {
 
             override fun onBotonClik(boton: Boton?) {
-                val sound = boton?.tematica
-                val action: MediaPlayer =MediaPlayer.create(activity, R.raw.cuenta_actitud)
-                mp.start()
+                val sound = boton?.sonido
+                mp = sound?.let { MediaPlayer.create(activity, it) }
+                mp?.start()
             }
         }
     }
     private fun iniciaRecyclerView() {
         //creamos el adaptador
-        kapp2Adapter = Kapp2Adapter()
-
+        botonesAdapter = BotonesAdapter()
         with(binding.rvBotones) {
             //Creamos el layoutManager
             layoutManager = LinearLayoutManager(activity)
             //le asignamos el adaptador
-            adapter = kapp2Adapter
+            adapter = botonesAdapter
         }
     }
 

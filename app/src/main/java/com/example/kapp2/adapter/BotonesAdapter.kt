@@ -7,16 +7,21 @@ import com.example.kapp2.R
 import com.example.kapp2.databinding.ItemBotonBinding
 import com.example.kapp2.model.Boton
 
-class Kapp2Adapter: RecyclerView.Adapter<Kapp2Adapter.Kapp2ViewHolder>() {
+class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
 
     var listaBotones: List<Boton>?=null
     var onBotonClickListener:OnBotonClickListener?=null
 
+    fun setLista(lista:List<Boton>){
+        listaBotones=lista
+        //notifica al adaptador que hay cambios y tiene que redibujar el ReciclerView
+        notifyDataSetChanged()
+    }
     inner class Kapp2ViewHolder(val binding: ItemBotonBinding)
         : RecyclerView.ViewHolder(binding.root){
         init {
 
-            binding.tbtLeft.setOnClickListener(){
+            binding.tbtSound.setOnClickListener{
                 //recuperamos la tarea de la lista
                 val boton= listaBotones?.get(this.adapterPosition)
                 //llamamos al evento borrar que estará definido en el fragment
@@ -55,7 +60,7 @@ class Kapp2Adapter: RecyclerView.Adapter<Kapp2Adapter.Kapp2ViewHolder>() {
             with(listaBotones!![pos]) {
 
                 //mostramos el icono en función del estado
-                binding.tbtLeft.setBackgroundResource(
+                binding.tbtSound.setBackgroundResource(
                     when (tematica) {
                         1 -> R.drawable.ic_tg_red_bg
                         2 -> R.drawable.ic_tg_skyblue_bg

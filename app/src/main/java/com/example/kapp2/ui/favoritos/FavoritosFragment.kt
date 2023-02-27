@@ -22,8 +22,7 @@ class FavoritosFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val favoritosViewModel =
-            ViewModelProvider(this).get(FavoritosViewModel::class.java)
+
 
         _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
         val root: View = binding.root

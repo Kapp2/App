@@ -24,5 +24,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tvBotones"
         tools:listitem="@layout/item_boton"
+        app:spanCount="2"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 </RelativeLayout>

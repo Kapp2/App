@@ -9,16 +9,14 @@ import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 
 object Repository {
-    //private lateinit var modelTareas:ModelTempTareas
+
     private lateinit var modelApp: Kapp2Dao
     //el context suele ser necesario para recuperar datos
     private lateinit var application: Application
-    //inicio del objeto singleton
+
     operator fun invoke(context: Context){
         this.application= context.applicationContext as Application
-        //iniciamos el modelo
-        //ModelTempTareas(application)
-        //modelTareas = ModelTempTareas
+
 
         modelApp = Kapp2DataBase.getInstance(application).kapp2Dao
     }

@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <ToggleButton
-            android:id="@+id/tbtLeft"
+            android:id="@+id/tbtSound"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_marginStart="32dp"
