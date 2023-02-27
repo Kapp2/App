@@ -10,24 +10,27 @@ import com.example.kapp2.model.Boton
 class Kapp2Adapter: RecyclerView.Adapter<Kapp2Adapter.Kapp2ViewHolder>() {
 
     var listaBotones: List<Boton>?=null
+    var onBotonClickListener:OnBotonClickListener?=null
 
     inner class Kapp2ViewHolder(val binding: ItemBotonBinding)
         : RecyclerView.ViewHolder(binding.root){
         init {
-            /*inicio del click de icono borrar
+
             binding.tbtLeft.setOnClickListener(){
                 //recuperamos la tarea de la lista
-                val tarea= listaTareas?.get(this.adapterPosition)
+                val boton= listaBotones?.get(this.adapterPosition)
                 //llamamos al evento borrar que estará definido en el fragment
-                onTareaClickListener?.onTareaBorrarClick(tarea)
+                onBotonClickListener?.onBotonClik(boton)
             }
-            //inicio del click sobre el Layout(constraintlayout)
+            /*//inicio del click sobre el Layout(constraintlayout)
             binding.tbtRight.setOnClickListener(){
                 val tarea= listaTareas?.get(this.adapterPosition)
                 onTareaClickListener?.onTareaClick(tarea)
             }
 
+
              */
+
             /*
             binding.tbtLeft.setOnLongClickListener() {
 
@@ -69,5 +72,9 @@ class Kapp2Adapter: RecyclerView.Adapter<Kapp2Adapter.Kapp2ViewHolder>() {
     override fun getItemCount(): Int = listaBotones?.size?:0
 
 
+    interface OnBotonClickListener{
+        //editar tarea que contiene el ViewHolder
+        fun onBotonClik(boton: Boton?)
 
+    }
 }
