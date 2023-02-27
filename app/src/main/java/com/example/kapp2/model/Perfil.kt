@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Perfil(
     @PrimaryKey(autoGenerate = true)
-    var id:Long?=null,
+    val perfil_id:Long?=null,
     val nickname:String,
     val password:String
 ):Parcelable {
@@ -19,11 +19,11 @@ data class Perfil(
     ):this(null, nickname, password)
 
     override fun equals(other: Any?): Boolean {
-        return (other is Perfil)&&(this.id == other.id)
+        return (other is Perfil)&&(this.perfil_id == other.perfil_id)
     }
 
     override fun hashCode(): Int {
-        var result = id?.hashCode() ?: 0
+        var result = perfil_id?.hashCode() ?: 0
         result = 31 * result + nickname.hashCode()
         result = 31 * result + password.hashCode()
         return result
