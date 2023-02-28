@@ -11,7 +11,7 @@
     <string name="wellcome_to_kapp2">Wellcome to Kapp2</string>
     <string name="crear_perfil">Crear Perfil</string>
     <string name="name">Name</string>
-    <string name="tematicas">Tematicas</string>
+    <string name="tematica">Tematicas</string>
     <string-array name="tematicas">
         <item>Todos</item>
         <item>Gritos</item>

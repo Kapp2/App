@@ -22,9 +22,9 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
         : RecyclerView.ViewHolder(binding.root){
         init {
             binding.tbtSound.setOnClickListener{
-                //recuperamos la tarea de la lista
+                //asignamos la funcion del boton
                 val boton= listaBotones?.get(this.adapterPosition)
-                //llamamos al evento borrar que estará definido en el fragment
+
                 onBotonClickListener?.onBotonClick(boton, it as ToggleButton)
             }
         }
@@ -41,9 +41,9 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
     override fun onBindViewHolder(kapp2ViewHolder: Kapp2ViewHolder, pos: Int) {
         //Nos pasan la posición del item a mostrar en el viewHolder
         with(kapp2ViewHolder) {
-            //cogemos la tarea a mostrar y rellenamos los campos del ViewHolder
+
             with(listaBotones!![pos]) {
-                //mostramos el icono en función del estado
+                //Seleccionamos la tematica por color
                 binding.tbtSound.setBackgroundResource(
                     when (tematica) {
                         1 -> R.drawable.ic_tg_red_bg
