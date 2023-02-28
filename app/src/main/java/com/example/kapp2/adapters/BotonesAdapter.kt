@@ -1,4 +1,4 @@
-package com.example.kapp2.adapter
+package com.example.kapp2.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

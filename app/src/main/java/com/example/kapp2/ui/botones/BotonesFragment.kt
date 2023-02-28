@@ -13,7 +13,7 @@ import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.kapp2.R
-import com.example.kapp2.adapter.BotonesAdapter
+import com.example.kapp2.adapters.BotonesAdapter
 import com.example.kapp2.databinding.FragmentBotonesBinding
 import com.example.kapp2.model.Boton
 import com.example.kapp2.viewModel.AppViewModel
@@ -45,7 +45,7 @@ class BotonesFragment : Fragment() {
         iniciaCRUD()
         iniciaSpTematica()
 
-        viewModel.botonLiveData.observe(viewLifecycleOwner) { lista ->
+        viewModel.botonesLiveData.observe(viewLifecycleOwner) { lista ->
             botonesAdapter.setLista(lista)
         }
     }
@@ -90,6 +90,7 @@ class BotonesFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
