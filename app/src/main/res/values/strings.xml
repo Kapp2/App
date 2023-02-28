@@ -15,9 +15,9 @@
     <string-array name="tematicas">
         <item>Todos</item>
         <item>Gritos</item>
+        <item>Música</item>
         <item>Memes</item>
         <item>Chistes</item>
-        <item>Musica</item>
         <item>2ºK DAM</item>
     </string-array>
 </resources>

@@ -6,12 +6,12 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+    tools:context=".ui.MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_above="@id/tabLayout"/>
 
     <com.google.android.material.tabs.TabLayout
@@ -22,23 +22,6 @@
         app:tabGravity="fill"
         app:tabMode="fixed"
         android:background="@color/white"
-        app:tabIndicatorColor="?colorPrimary"
-        android:layout_alignParentBottom="true">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            tools:text="Login" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            tools:text="Botones" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            tools:text="Favoritos" />
-
-    </com.google.android.material.tabs.TabLayout>
+        app:tabIndicatorColor="@color/design_default_color_primary"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

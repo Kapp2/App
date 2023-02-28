@@ -34,6 +34,7 @@ class FavoritosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBotonesBinding.inflate(inflater, container, false)
+        binding.tvBotones.setText(R.string.favoritos)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +44,7 @@ class FavoritosFragment : Fragment() {
         iniciaSpTematica()
 
         viewModel.botonesLiveData.observe(viewLifecycleOwner) { lista ->
-            botonesAdapter.setLista(lista)
+            //botonesAdapter.setLista(lista)
         }
     }
 
