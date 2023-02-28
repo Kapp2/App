@@ -53,6 +53,7 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
                         else -> R.drawable.ic_tg_red_bg
                     }
                 )
+                binding.tvTitleButton.text = titulo
             }
         }
     }
