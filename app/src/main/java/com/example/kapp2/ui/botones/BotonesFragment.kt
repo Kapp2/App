@@ -2,14 +2,16 @@ package com.example.kapp2.ui.botones
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.activityViewModels
 import com.example.kapp2.R
 import com.example.kapp2.adapter.BotonesAdapter
 import com.example.kapp2.databinding.FragmentBotonesBinding
@@ -20,10 +22,7 @@ class BotonesFragment : Fragment() {
 
     private var _binding: FragmentBotonesBinding? = null
     private var mp: MediaPlayer?=null
-    private val viewModel: AppViewModel //by activityViewModels()
-        get() {
-            TODO()
-        }
+    private val viewModel: AppViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -36,42 +35,36 @@ class BotonesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentBotonesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        /*
-        val textView: TextView = binding.textDashboard
-        botonesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
-        return root
+        return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         iniciaRecyclerView()
         iniciaCRUD()
+        iniciaSpTematica()
 
-        viewModel.botonLiveData.observe(viewLifecycleOwner, Observer<List<Boton>> { lista ->
-            //actualizaLista(lista)
+        viewModel.botonLiveData.observe(viewLifecycleOwner) { lista ->
             botonesAdapter.setLista(lista)
-        })
-    }
-    /*
-    fun CuantaActitud(view: View?) {
-        val mp: MediaPlayer = MediaPlayer.create(activity, R.raw.cuenta_actitud)
-        mp.start()
+        }
     }
 
-     */
     private fun iniciaCRUD(){
         botonesAdapter.onBotonClickListener = object :
             BotonesAdapter.OnBotonClickListener {
 
-            override fun onBotonClik(boton: Boton?) {
+            override fun onBotonClick(boton: Boton?, view: ToggleButton) {
+                if(!view.isChecked){
+                    mp?.stop()
+                    return
+                }
                 val sound = boton?.sonido
                 mp = sound?.let { MediaPlayer.create(activity, it) }
                 mp?.start()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    view.isChecked = false
+                }, (mp?.duration?:1000).toLong())
             }
         }
     }
@@ -79,8 +72,6 @@ class BotonesFragment : Fragment() {
         //creamos el adaptador
         botonesAdapter = BotonesAdapter()
         with(binding.rvBotones) {
-            //Creamos el layoutManager
-            layoutManager = LinearLayoutManager(activity)
             //le asignamos el adaptador
             adapter = botonesAdapter
         }
@@ -94,14 +85,7 @@ class BotonesFragment : Fragment() {
 
         binding.spTematica.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, v: View?, posicion: Int, id: Long) {
-               when (posicion){
-                   0 -> viewModel.setEstado(0)
-                   1 -> viewModel.setEstado(1)
-                   2 -> viewModel.setEstado(2)
-                   3 -> viewModel.setEstado(3)
-                   4 -> viewModel.setEstado(4)
-                   5 -> viewModel.setEstado(5)
-               }
+               viewModel.setTematica(posicion)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }

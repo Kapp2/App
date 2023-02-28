@@ -2,6 +2,7 @@ package com.example.kapp2.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kapp2.R
 import com.example.kapp2.databinding.ItemBotonBinding
@@ -20,28 +21,12 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
     inner class Kapp2ViewHolder(val binding: ItemBotonBinding)
         : RecyclerView.ViewHolder(binding.root){
         init {
-
             binding.tbtSound.setOnClickListener{
                 //recuperamos la tarea de la lista
                 val boton= listaBotones?.get(this.adapterPosition)
                 //llamamos al evento borrar que estará definido en el fragment
-                onBotonClickListener?.onBotonClik(boton)
+                onBotonClickListener?.onBotonClick(boton, it as ToggleButton)
             }
-            /*//inicio del click sobre el Layout(constraintlayout)
-            binding.tbtRight.setOnClickListener(){
-                val tarea= listaTareas?.get(this.adapterPosition)
-                onTareaClickListener?.onTareaClick(tarea)
-            }
-
-
-             */
-
-            /*
-            binding.tbtLeft.setOnLongClickListener() {
-
-            }
-
-             */
         }
     }
 
@@ -58,7 +43,6 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
         with(kapp2ViewHolder) {
             //cogemos la tarea a mostrar y rellenamos los campos del ViewHolder
             with(listaBotones!![pos]) {
-
                 //mostramos el icono en función del estado
                 binding.tbtSound.setBackgroundResource(
                     when (tematica) {
@@ -79,7 +63,7 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
 
     interface OnBotonClickListener{
         //editar tarea que contiene el ViewHolder
-        fun onBotonClik(boton: Boton?)
+        fun onBotonClick(boton: Boton?, view: ToggleButton)
 
     }
 }
