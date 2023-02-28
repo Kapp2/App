@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -83,7 +85,27 @@ class BotonesFragment : Fragment() {
             adapter = botonesAdapter
         }
     }
+    private fun iniciaSpTematica() {
+        ArrayAdapter.createFromResource(requireContext(), R.array.tematicas,
+            android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.spTematica.adapter = adapter
+        }
 
+        binding.spTematica.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, v: View?, posicion: Int, id: Long) {
+               when (posicion){
+                   0 -> viewModel.setEstado(0)
+                   1 -> viewModel.setEstado(1)
+                   2 -> viewModel.setEstado(2)
+                   3 -> viewModel.setEstado(3)
+                   4 -> viewModel.setEstado(4)
+                   5 -> viewModel.setEstado(5)
+               }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
