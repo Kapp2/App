@@ -32,7 +32,7 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             Kapp2ViewHolder {
-        //utilizamos binding, en otro caso hay que indicar el item.xml. Para más detalles puedes verlo en la documentación
+
         val binding = ItemBotonBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return Kapp2ViewHolder(binding)
@@ -41,7 +41,6 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
     override fun onBindViewHolder(kapp2ViewHolder: Kapp2ViewHolder, pos: Int) {
         //Nos pasan la posición del item a mostrar en el viewHolder
         with(kapp2ViewHolder) {
-
             with(listaBotones!![pos]) {
                 //Seleccionamos la tematica por color
                 binding.tbtSound.setBackgroundResource(
