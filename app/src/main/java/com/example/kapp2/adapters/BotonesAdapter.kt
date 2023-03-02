@@ -27,6 +27,7 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
 
                 onBotonClickListener?.onBotonClick(boton, it as ToggleButton)
             }
+            //binding.tbtSound.setOnLongClickListener{}
         }
     }
 
@@ -63,8 +64,6 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
 
 
     interface OnBotonClickListener{
-        //editar tarea que contiene el ViewHolder
         fun onBotonClick(boton: Boton?, view: ToggleButton)
-
     }
 }

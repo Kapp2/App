@@ -16,6 +16,7 @@ import com.example.kapp2.R
 import com.example.kapp2.adapters.BotonesAdapter
 import com.example.kapp2.databinding.FragmentBotonesBinding
 import com.example.kapp2.model.Boton
+import com.example.kapp2.ui.home.HomeFragment.Companion.perfil
 import com.example.kapp2.viewModel.AppViewModel
 class FavoritosFragment : Fragment() {
 
@@ -39,13 +40,10 @@ class FavoritosFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.setFavoritos(perfil)
         iniciaRecyclerView()
         iniciaCRUD()
         iniciaSpTematica()
-
-        viewModel.botonesLiveData.observe(viewLifecycleOwner) { lista ->
-            //botonesAdapter.setLista(lista)
-        }
     }
 
     private fun iniciaCRUD(){
@@ -64,6 +62,8 @@ class FavoritosFragment : Fragment() {
                     view.isChecked = false
                 }, (mp?.duration?:1000).toLong())
             }
+
+            //override fun editFavoritos(boton: Boton?) {}
         }
     }
     private fun iniciaRecyclerView() {
@@ -83,7 +83,7 @@ class FavoritosFragment : Fragment() {
 
         binding.spTematica.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, v: View?, posicion: Int, id: Long) {
-                viewModel.setTematica(posicion)
+                botonesAdapter.setLista(viewModel.getBotonesFavoritos(posicion))
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }

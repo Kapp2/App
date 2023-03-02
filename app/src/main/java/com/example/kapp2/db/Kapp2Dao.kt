@@ -22,6 +22,9 @@ interface Kapp2Dao {
     @Delete
     suspend fun delPerfil(perfil: Perfil)
 
+    @Delete
+    suspend fun delBotonesFavoritosCrossRef(crossRef: BotonesFavoritosCrossRef)
+
     @Transaction
     @Query("SELECT * FROM botones")
     fun getAllBotones(): LiveData<List<Boton>>

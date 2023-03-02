@@ -7,9 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.kapp2.databinding.FragmentHomeBinding
+import com.example.kapp2.model.Perfil
 import com.example.kapp2.viewModel.AppViewModel
 
 class HomeFragment : Fragment() {
+
+    companion object {
+        lateinit var perfil: Perfil
+    }
 
     private var _binding: FragmentHomeBinding? = null
     private val viewModel: AppViewModel by activityViewModels()
