@@ -15,12 +15,13 @@ import androidx.fragment.app.activityViewModels
 import com.example.kapp2.R
 import com.example.kapp2.adapters.BotonesAdapter
 import com.example.kapp2.databinding.FragmentBotonesBinding
+import com.example.kapp2.databinding.FragmentFavoritosBinding
 import com.example.kapp2.model.Boton
 import com.example.kapp2.ui.HomeFragment.Companion.perfil
 import com.example.kapp2.viewModel.AppViewModel
 class FavoritosFragment : Fragment() {
 
-    private var _binding: FragmentBotonesBinding? = null
+    private var _binding: FragmentFavoritosBinding? = null
     private val viewModel: AppViewModel by activityViewModels()
     private var mp: MediaPlayer?=null
 
@@ -34,8 +35,8 @@ class FavoritosFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBotonesBinding.inflate(inflater, container, false)
-        binding.tvBotones.setText(R.string.favoritos)
+        _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
+        binding.tvFavoritos.setText(R.string.favoritos)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
