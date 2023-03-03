@@ -34,10 +34,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+/*
         viewModel.perfilesLiveData.observe(viewLifecycleOwner) { lista ->
 
-        }
+
+       }
+ */
     }
 
     override fun onDestroyView() {
