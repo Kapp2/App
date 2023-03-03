@@ -38,7 +38,6 @@ class FavoritosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
-        binding.tvFavoritos.setText(R.string.favoritos)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,6 +57,7 @@ class FavoritosFragment : Fragment() {
         iniciaRecyclerView()
         iniciaCRUD()
         iniciaSpTematica()
+
     }
 
     private fun iniciaCRUD(){

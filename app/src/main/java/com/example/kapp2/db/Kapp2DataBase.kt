@@ -66,7 +66,6 @@ abstract class Kapp2DataBase : RoomDatabase(){
                 val botones = listOf(
                     Boton("La Actitud Cuenta?", R.raw.cuenta_actitud, 5),
                     Boton("Blueberries",R.raw.blueberries,1),
-                    Boton("Kulikitaca Ti", R.raw.kulikitaca_ti, 2),
                     Boton("Para los Despistados", R.raw.despitados_paco, 5),
                     Boton("Directed By", R.raw.directed_by, 2),
                     Boton("Hablando en Kotlin", R.raw.hablando_kotlin, 5),
@@ -76,15 +75,20 @@ abstract class Kapp2DataBase : RoomDatabase(){
                     Boton("Sing Winner", R.raw.sing_winner, 2),
                     Boton("Jose Antonio", R.raw.jose_antonio, 5),
                     Boton("Una Tragedia", R.raw.una_tragedia, 4),
-                    Boton("Paco Nervioso", R.raw.paco_nervioso, 5),
+                    Boton( "Paco Nervioso", R.raw.paco_nervioso, 5),
                     Boton("YA esta aqui la guerra", R.raw.ya_esta_la_guerra, 3),
                     Boton("Veggeta me la ", R.raw.v_mete_w, 3),
                     Boton("Sa matao Paco ", R.raw.sa_matao_paco, 3),
                     Boton("Deja Vu", R.raw.deja_vu, 2),
                     Boton("Todo Mal", R.raw.paco_todo_mal, 5),
                     Boton("Croquetas", R.raw.croquetas, 4),
-                    Boton("Una Pregunta Curiosa...", R.raw.pregunta_curiosa, 5)
-
+                    Boton("Una Pregunta Curiosa...", R.raw.pregunta_curiosa, 5),
+                    Boton("Chacarron Dog", R.raw.chacarron_dog, 1),
+                    Boton("Jumping frog", R.raw.jumping_frog, 1),
+                    Boton("Música de tutoriales", R.raw.musica_tutoriales, 3),
+                    Boton("Quiero ver a tilín", R.raw.tilin, 2),
+                    Boton("Me corrooooahhh", R.raw.me_corro, 3),
+                    Boton("Top 5 niños...", R.raw.top5, 4)
                 )
                 botones.forEach { kapp2Dao.addBoton(it) }
                 val botonesFavoritos = listOf(

@@ -5,11 +5,11 @@
     <string name="title_favoritos">Favoritos</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="enter">Enter</string>
+    <string name="login">Login</string>
     <string name="botones">Botones</string>
     <string name="favoritos">Favoritos</string>
     <string name="wellcome_to_kapp2">Welcome to Kapp2!</string>
-    <string name="crear_perfil">Crear Perfil</string>
+    <string name="editar_perfil">Editar Perfil</string>
     <string name="name">Name</string>
     <string name="tematica">Tematicas</string>
     <string-array name="tematicas">

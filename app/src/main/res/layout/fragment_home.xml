@@ -29,7 +29,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:hint="@string/password"
-        android:imeActionLabel="@string/enter"
+        android:imeActionLabel="@string/login"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginBottom="64dp"
-        android:text="@string/enter"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -54,12 +54,13 @@
         app:layout_constraintVertical_bias="0.27" />
 
     <Button
-        android:id="@+id/btcreateUser"
+        android:id="@+id/btEditUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginBottom="64dp"
-        android:text="@string/crear_perfil"
+        android:text="@string/editar_perfil"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

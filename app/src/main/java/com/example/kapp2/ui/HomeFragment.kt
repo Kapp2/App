@@ -79,13 +79,13 @@ class HomeFragment : Fragment() {
                 Snackbar.make(
                     binding.root,
                     "El perfil introducido no existe. Deseas crear uno nuevo?",
-                    Snackbar.LENGTH_LONG
+                    5000
                 )
                     .setAction("AÑADIR") { viewModel.addPerfil(Perfil(nombre, passwd)) }.show()
             }
         }
 
-        binding.btcreateUser.setOnClickListener {
+        binding.btEditUser.setOnClickListener {
             val nombre = binding.etName.text.toString()
             val passwd = binding.etPassword.text.toString()
             viewModel.addPerfil(Perfil(nombre, passwd))
