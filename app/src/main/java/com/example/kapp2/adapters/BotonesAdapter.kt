@@ -22,12 +22,14 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
         : RecyclerView.ViewHolder(binding.root){
         init {
             binding.tbtSound.setOnClickListener{
-                //asignamos la funcion del boton
-                val boton= listaBotones?.get(this.adapterPosition)
-
+                val boton = listaBotones?.get(this.adapterPosition)
                 onBotonClickListener?.onBotonClick(boton, it as ToggleButton)
             }
-            //binding.tbtSound.setOnLongClickListener{}
+            binding.tbtSound.setOnLongClickListener{
+                val boton = listaBotones?.get(this.adapterPosition)
+                onBotonClickListener?.editFavoritos(boton)
+                true
+            }
         }
     }
 
@@ -65,5 +67,6 @@ class BotonesAdapter: RecyclerView.Adapter<BotonesAdapter.Kapp2ViewHolder>() {
 
     interface OnBotonClickListener{
         fun onBotonClick(boton: Boton?, view: ToggleButton)
+        fun editFavoritos(boton: Boton?)
     }
 }

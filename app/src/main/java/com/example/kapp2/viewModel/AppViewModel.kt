@@ -2,26 +2,25 @@ package com.example.kapp2.viewModel
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.kapp2.db.relations.BotonEnPerfiles
+import com.example.kapp2.db.relations.BotonPerfilCrossRef
+import com.example.kapp2.db.relations.PerfilConBotones
 import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 import com.example.kapp2.repository.Repository
+import com.example.kapp2.ui.HomeFragment.Companion.perfil
+import com.example.kapp2.ui.HomeFragment.Companion.perfilInit
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repositorio:Repository
     val botonesLiveData : LiveData<List<Boton>>
     val perfilesLiveData : LiveData<List<Perfil>>
-    val favoritosLiveData : MutableList<Boton> = mutableListOf()
+    val favoritosLiveData : MutableLiveData<LiveData<List<PerfilConBotones>>> = MutableLiveData()
+    val favoritosTematicaLiveData : LiveData<List<BotonEnPerfiles>>
     private val tematicaLiveData = MutableLiveData(5)
-    val PERFIL="PERFIL"
-    val TEMATICA="TEMATICA"
-    private val botonesFavoritosLiveData by lazy {
-        val mutableMap = mutableMapOf<String, Any?>(
-            PERFIL to null,
-            TEMATICA to 0
-        )
-        MutableLiveData(mutableMap)
-    }
     init {
         //inicia repositorio
         Repository(getApplication<Application>().applicationContext)
@@ -33,24 +32,30 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             else
                 repositorio.getBotonesFiltroTematica(tematica)
         }
-/*
-        favoritosLiveData = Transformations.switchMap(botonesFavoritosLiveData){ botones ->
-            if (botones[TEMATICA] == 0) {
-                repositorio.getBotonesOfPerfil(botones[PERFIL]).first().botones
-            }
 
+        if(perfilInit()){
+            favoritosLiveData.value = repositorio.getBotonesOfPerfil(perfil)
         }
 
- */
+        favoritosTematicaLiveData = Transformations.switchMap(tematicaLiveData) { tematica ->
+            repositorio.getBotonesOfPerfilFiltroTematica(tematica)
+        }
+    }
 
-
+    fun addPerfil(perfil: Perfil) = viewModelScope.launch (Dispatchers.IO){
+        Repository.addPerfil(perfil)
+    }
+    fun addFavorito(crossRef: BotonPerfilCrossRef) = viewModelScope.launch (Dispatchers.IO){
+        Repository.addFavorito(crossRef)
+    }
+    fun delPerfil(perfil: Perfil) = viewModelScope.launch (Dispatchers.IO){
+        Repository.delPerfil(perfil)
+    }
+    fun delFavorito(crossRef: BotonPerfilCrossRef) = viewModelScope.launch (Dispatchers.IO){
+        Repository.delFavorito(crossRef)
     }
 
     fun setTematica(tematica: Int) {
         tematicaLiveData.value = tematica
     }
-
-    /*fun setFavoritos(perfil: Perfil) = viewModelScope.launch(Dispatchers.IO) {
-        favoritosLiveData = Repository.getBotonesOfPerfil(perfil).first().botones
-    }*/
 }

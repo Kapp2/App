@@ -1,4 +1,4 @@
-package com.example.kapp2.ui.favoritos
+package com.example.kapp2.ui
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -9,25 +9,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.kapp2.R
 import com.example.kapp2.adapters.BotonesAdapter
 import com.example.kapp2.databinding.FragmentBotonesBinding
+import com.example.kapp2.db.relations.BotonPerfilCrossRef
 import com.example.kapp2.model.Boton
-import com.example.kapp2.ui.home.HomeFragment.Companion.perfil
+import com.example.kapp2.ui.HomeFragment.Companion.perfil
+import com.example.kapp2.ui.HomeFragment.Companion.perfilInit
 import com.example.kapp2.viewModel.AppViewModel
-class FavoritosFragment : Fragment() {
+
+class BotonesFragment : Fragment() {
 
     private var _binding: FragmentBotonesBinding? = null
-    private val viewModel: AppViewModel by activityViewModels()
     private var mp: MediaPlayer?=null
+    private val viewModel: AppViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var botonesAdapter: BotonesAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,15 +40,18 @@ class FavoritosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBotonesBinding.inflate(inflater, container, false)
-        binding.tvBotones.setText(R.string.favoritos)
+
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setFavoritos(perfil)
         iniciaRecyclerView()
         iniciaCRUD()
         iniciaSpTematica()
+
+        viewModel.botonesLiveData.observe(viewLifecycleOwner) { lista ->
+            botonesAdapter.setLista(lista)
+        }
     }
 
     private fun iniciaCRUD(){
@@ -63,7 +71,20 @@ class FavoritosFragment : Fragment() {
                 }, (mp?.duration?:1000).toLong())
             }
 
-            //override fun editFavoritos(boton: Boton?) {}
+            override fun editFavoritos(boton: Boton?) {
+                 if(perfilInit()){
+                     if(boton != null){
+                         if(boton.boton_id != null){
+                             viewModel.addFavorito(BotonPerfilCrossRef(boton.boton_id, perfil.nickname))
+                             Toast.makeText(activity, "Botón " + boton.titulo + " añadido correctamente a Favoritos.",
+                             Toast.LENGTH_LONG).show()
+                         }
+                     }
+                 } else {
+                     Toast.makeText(activity, "Para añadir botones a Favoritos debes iniciar sesión!",
+                     Toast.LENGTH_LONG).show()
+                 }
+            }
         }
     }
     private fun iniciaRecyclerView() {
@@ -83,7 +104,7 @@ class FavoritosFragment : Fragment() {
 
         binding.spTematica.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, v: View?, posicion: Int, id: Long) {
-                botonesAdapter.setLista(viewModel.getBotonesFavoritos(posicion))
+               viewModel.setTematica(posicion)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }

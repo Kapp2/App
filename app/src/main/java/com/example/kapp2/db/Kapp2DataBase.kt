@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.kapp2.R
-import com.example.kapp2.db.relations.BotonesFavoritosCrossRef
+import com.example.kapp2.db.relations.BotonPerfilCrossRef
 import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 import kotlinx.coroutines.GlobalScope
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
     entities = [
         Boton::class,
         Perfil::class,
-        BotonesFavoritosCrossRef::class
+        BotonPerfilCrossRef::class
     ],
     version = 1,
     exportSchema = false
@@ -59,7 +59,7 @@ abstract class Kapp2DataBase : RoomDatabase(){
             suspend fun cargarDatabase(kapp2Dao: Kapp2Dao) {
                 val perfiles = listOf(
                     Perfil("Pedro", "pdr2511"),
-                    Perfil("Juan Antonio", "ja1901"),
+                    Perfil("Juan", "ja1901"),
                     Perfil("Paco", "pc0610")
                 )
                 perfiles.forEach { kapp2Dao.addPerfil(it) }
@@ -85,13 +85,13 @@ abstract class Kapp2DataBase : RoomDatabase(){
                 )
                 botones.forEach { kapp2Dao.addBoton(it) }
                 val botonesFavoritos = listOf(
-                    BotonesFavoritosCrossRef(1, 3),
-                    BotonesFavoritosCrossRef(2, 2),
-                    BotonesFavoritosCrossRef(4, 1),
-                    BotonesFavoritosCrossRef(7, 3),
-                    BotonesFavoritosCrossRef(3, 3)
+                    BotonPerfilCrossRef(1, "Paco"),
+                    BotonPerfilCrossRef(2, "Juan"),
+                    BotonPerfilCrossRef(4, "Juan"),
+                    BotonPerfilCrossRef(7, "Pedro"),
+                    BotonPerfilCrossRef(3, "Paco")
                 )
-                botonesFavoritos.forEach { kapp2Dao.addBotonesFavoritosCrossRef(it) }
+                botonesFavoritos.forEach { kapp2Dao.addBotonesFavoritos(it) }
             }
         }
     }

@@ -10,8 +10,8 @@ data class BotonEnPerfiles(
     @Embedded val boton: Boton,
     @Relation(
         parentColumn = "boton_id",
-        entityColumn = "perfil_id",
-        associateBy = Junction(BotonesFavoritosCrossRef::class)
+        entityColumn = "nickname",
+        associateBy = Junction(BotonPerfilCrossRef::class)
     )
     val perfiles: List<Perfil>
 )

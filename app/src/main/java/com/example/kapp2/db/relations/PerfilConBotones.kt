@@ -9,9 +9,9 @@ import com.example.kapp2.model.Perfil
 data class PerfilConBotones(
     @Embedded val perfil: Perfil,
     @Relation(
-        parentColumn = "perfil_id",
+        parentColumn = "nickname",
         entityColumn = "boton_id",
-        associateBy = Junction(BotonesFavoritosCrossRef::class)
+        associateBy = Junction(BotonPerfilCrossRef::class)
     )
     val botones: List<Boton>
 )

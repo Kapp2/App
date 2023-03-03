@@ -2,14 +2,14 @@ package com.example.kapp2.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.kapp2.db.relations.BotonesFavoritosCrossRef
+import com.example.kapp2.db.relations.BotonEnPerfiles
+import com.example.kapp2.db.relations.BotonPerfilCrossRef
 import com.example.kapp2.db.relations.PerfilConBotones
 import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 
 @Dao
 interface Kapp2Dao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addBoton(boton: Boton)
 
@@ -17,13 +17,13 @@ interface Kapp2Dao {
     suspend fun addPerfil(perfil: Perfil)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addBotonesFavoritosCrossRef(crossRef: BotonesFavoritosCrossRef)
+    suspend fun addBotonesFavoritos(crossRef: BotonPerfilCrossRef)
 
     @Delete
     suspend fun delPerfil(perfil: Perfil)
 
     @Delete
-    suspend fun delBotonesFavoritosCrossRef(crossRef: BotonesFavoritosCrossRef)
+    suspend fun delBotonesFavoritos(crossRef: BotonPerfilCrossRef)
 
     @Transaction
     @Query("SELECT * FROM botones")
@@ -34,11 +34,15 @@ interface Kapp2Dao {
     fun getAllPerfiles(): LiveData<List<Perfil>>
 
     @Transaction
-    @Query("SELECT * FROM perfiles WHERE perfil_id = :perfilId")
-    suspend fun getBotonesOfPerfil(perfilId: Long?): List<PerfilConBotones>
-
     @Query("SELECT * FROM botones WHERE tematica = :tematica")
     fun getBotonesFiltroTematica(tematica:Int): LiveData<List<Boton>>
 
+    @Transaction
+    @Query("SELECT * FROM perfiles WHERE nickname = :perfilNick")
+    fun getBotonesOfPerfil(perfilNick: String): LiveData<List<PerfilConBotones>>
+
+    @Transaction
+    @Query("SELECT * FROM botones WHERE tematica = :tematica")
+    fun getBotonesOfPerfilFiltroTematica(tematica: Int): LiveData<List<BotonEnPerfiles>>
 
 }

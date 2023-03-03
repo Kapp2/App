@@ -1,4 +1,4 @@
-package com.example.kapp2.ui.botones
+package com.example.kapp2.ui
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -16,19 +16,18 @@ import com.example.kapp2.R
 import com.example.kapp2.adapters.BotonesAdapter
 import com.example.kapp2.databinding.FragmentBotonesBinding
 import com.example.kapp2.model.Boton
+import com.example.kapp2.ui.HomeFragment.Companion.perfil
 import com.example.kapp2.viewModel.AppViewModel
-
-class BotonesFragment : Fragment() {
+class FavoritosFragment : Fragment() {
 
     private var _binding: FragmentBotonesBinding? = null
-    private var mp: MediaPlayer?=null
     private val viewModel: AppViewModel by activityViewModels()
+    private var mp: MediaPlayer?=null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var botonesAdapter: BotonesAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,18 +35,21 @@ class BotonesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBotonesBinding.inflate(inflater, container, false)
-
+        binding.tvBotones.setText(R.string.favoritos)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.favoritosLiveData.observe(viewLifecycleOwner) { mutable ->
+            mutable.observe(viewLifecycleOwner) { lista ->
+                botonesAdapter.setLista(lista.first().botones)
+            }
+        }
+
         iniciaRecyclerView()
         iniciaCRUD()
         iniciaSpTematica()
-
-        viewModel.botonesLiveData.observe(viewLifecycleOwner) { lista ->
-            botonesAdapter.setLista(lista)
-        }
     }
 
     private fun iniciaCRUD(){
@@ -66,6 +68,8 @@ class BotonesFragment : Fragment() {
                     view.isChecked = false
                 }, (mp?.duration?:1000).toLong())
             }
+
+            override fun editFavoritos(boton: Boton?) {}
         }
     }
     private fun iniciaRecyclerView() {
@@ -85,7 +89,7 @@ class BotonesFragment : Fragment() {
 
         binding.spTematica.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, v: View?, posicion: Int, id: Long) {
-               viewModel.setTematica(posicion)
+
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
