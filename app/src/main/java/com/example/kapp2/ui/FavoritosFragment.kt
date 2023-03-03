@@ -9,15 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.kapp2.R
 import com.example.kapp2.adapters.BotonesAdapter
-import com.example.kapp2.databinding.FragmentBotonesBinding
 import com.example.kapp2.databinding.FragmentFavoritosBinding
+import com.example.kapp2.db.relations.BotonPerfilCrossRef
 import com.example.kapp2.model.Boton
 import com.example.kapp2.ui.HomeFragment.Companion.perfil
+import com.example.kapp2.ui.HomeFragment.Companion.perfilInit
 import com.example.kapp2.viewModel.AppViewModel
 class FavoritosFragment : Fragment() {
 
@@ -42,9 +44,14 @@ class FavoritosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.favoritosLiveData.observe(viewLifecycleOwner) { mutable ->
-            mutable.observe(viewLifecycleOwner) { lista ->
-                botonesAdapter.setLista(lista.first().botones)
+        viewModel.favoritosLiveData.observe(viewLifecycleOwner) { lista ->
+            if(perfilInit()){
+                val list = lista.filter{ botonEnPerfiles -> botonEnPerfiles.perfiles.contains(perfil) }
+                val listaBoton: MutableList<Boton> = mutableListOf()
+                list.forEach{
+                    listaBoton.add(it.boton)
+                }
+                botonesAdapter.setLista(listaBoton)
             }
         }
 
@@ -70,7 +77,15 @@ class FavoritosFragment : Fragment() {
                 }, (mp?.duration?:1000).toLong())
             }
 
-            override fun editFavoritos(boton: Boton?) {}
+            override fun editFavoritos(boton: Boton?) {
+                if(boton != null){
+                    if(boton.boton_id != null){
+                        viewModel.delFavorito(BotonPerfilCrossRef(boton.boton_id, perfil.nickname))
+                        Toast.makeText(activity, "Botón " + boton.titulo + " eliminado correctamente de Favoritos.",
+                            Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
     }
     private fun iniciaRecyclerView() {
@@ -90,7 +105,7 @@ class FavoritosFragment : Fragment() {
 
         binding.spTematica.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, v: View?, posicion: Int, id: Long) {
-
+                viewModel.setTematica(posicion)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }

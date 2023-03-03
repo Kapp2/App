@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.example.kapp2.db.Kapp2Dao
 import com.example.kapp2.db.Kapp2DataBase
-import com.example.kapp2.db.relations.BotonEnPerfiles
 import com.example.kapp2.db.relations.BotonPerfilCrossRef
 import com.example.kapp2.model.Perfil
 
@@ -26,7 +25,7 @@ object Repository {
     fun getAllBotones() = modelApp.getAllBotones()
     fun getAllPerfiles() = modelApp.getAllPerfiles()
     fun getBotonesFiltroTematica(tematica: Int) = modelApp.getBotonesFiltroTematica(tematica)
-    fun getBotonesOfPerfil(perfil: Perfil) = modelApp.getBotonesOfPerfil(perfil.nickname)
-    fun getBotonesOfPerfilFiltroTematica(tematica: Int) =
-        modelApp.getBotonesOfPerfilFiltroTematica(tematica)
+    fun getBotonesFavoritos() = modelApp.getBotonesFavoritos()
+    fun getBotonesFavoritosFiltroTematica(tematica: Int) =
+        modelApp.getBotonesFavoritosFiltroTematica(tematica)
 }

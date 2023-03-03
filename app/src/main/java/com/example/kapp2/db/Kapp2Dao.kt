@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.kapp2.db.relations.BotonEnPerfiles
 import com.example.kapp2.db.relations.BotonPerfilCrossRef
-import com.example.kapp2.db.relations.PerfilConBotones
 import com.example.kapp2.model.Boton
 import com.example.kapp2.model.Perfil
 
@@ -38,11 +37,11 @@ interface Kapp2Dao {
     fun getBotonesFiltroTematica(tematica:Int): LiveData<List<Boton>>
 
     @Transaction
-    @Query("SELECT * FROM perfiles WHERE nickname = :perfilNick")
-    fun getBotonesOfPerfil(perfilNick: String): LiveData<List<PerfilConBotones>>
+    @Query("SELECT * FROM botones")
+    fun getBotonesFavoritos(): LiveData<List<BotonEnPerfiles>>
 
     @Transaction
     @Query("SELECT * FROM botones WHERE tematica = :tematica")
-    fun getBotonesOfPerfilFiltroTematica(tematica: Int): LiveData<List<BotonEnPerfiles>>
+    fun getBotonesFavoritosFiltroTematica(tematica: Int): LiveData<List<BotonEnPerfiles>>
 
 }

@@ -66,6 +66,8 @@ class HomeFragment : Fragment() {
                         activity, "Login Correcto. Disfruta!",
                         Toast.LENGTH_SHORT
                     ).show()
+                    viewModel.setTematica(1)
+                    viewModel.setTematica(0)
                 } else {
                     binding.etPassword.setText("")
                     Toast.makeText(
