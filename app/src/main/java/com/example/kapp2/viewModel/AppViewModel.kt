@@ -11,8 +11,17 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val repositorio:Repository
     val botonesLiveData : LiveData<List<Boton>>
     val perfilesLiveData : LiveData<List<Perfil>>
+    val favoritosLiveData : MutableList<Boton> = mutableListOf()
     private val tematicaLiveData = MutableLiveData(5)
-
+    val PERFIL="PERFIL"
+    val TEMATICA="TEMATICA"
+    private val botonesFavoritosLiveData by lazy {
+        val mutableMap = mutableMapOf<String, Any?>(
+            PERFIL to null,
+            TEMATICA to 0
+        )
+        MutableLiveData(mutableMap)
+    }
     init {
         //inicia repositorio
         Repository(getApplication<Application>().applicationContext)
@@ -24,6 +33,17 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             else
                 repositorio.getBotonesFiltroTematica(tematica)
         }
+/*
+        favoritosLiveData = Transformations.switchMap(botonesFavoritosLiveData){ botones ->
+            if (botones[TEMATICA] == 0) {
+                repositorio.getBotonesOfPerfil(botones[PERFIL]).first().botones
+            }
+
+        }
+
+ */
+
+
     }
 
     fun setTematica(tematica: Int) {
