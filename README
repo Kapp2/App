@@ -1,0 +1,31 @@
+Hola Laura, este el README! de la aplicación. 
+A continuación te voy a mostrar el usuario y contraseña de algunos de los usuarios que tenemos 
+en la base de datos preestablecidos, por si quieres entrar a la app con esos perfiles. Además, 
+más adelante te mostraré los pasos para crear un usuario en la app.
+
+-----LISTA DE USUARIOS GUARDADOS------
+1- Usuario: "Juan"
+Contraseña: "ja1901"
+2- Usuario: "Pedro"
+Contraseña: "pdr2511"
+3- Usuario: "Paco "
+Contraseña:"pc0610"
+
+Cada uno de estos usuarios contiene su lista de botones favoritos que puedes ver una vez inicies la aplicación.
+
+Hay que dejar claro que en la app puede entrar cualquier usuario sin iniciar sesión y acceder a los botones, pero
+no podrá tener su lista de botones favoritos asociada a su perfil si no se registra. Por eso:
+
+¡Puedes crear nuevos usuarios y añadirle tus propios botones favoritos si gustas!
+
+Pasos para crear un usuario:
+
+1- Introduce el nombre del usuario y su contraseña
+
+2- Si al presionar el botón 'LOGIN' tu mensaje es: 'Login correcto, disfruta', ese usuario ya está registrado y 
+has iniciado sesión con ese perfil. Por el contrario, si tu mensaje es: 'El perfil introducido no existe, deseas
+crear uno nuevo?', deberás presionar el botón 'AÑADIR' de la propia ventana emergente o (TOAST) que aparece.
+
+3- Una vez presionado 'AÑADIR', su perfil se habrá creado correctamente y podrás tener tu lista de favoritos.
+
+4- Disfruta de tu lista de favoritos y pasa un buen rato escuchando sonidos :)
